@@ -4,18 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1148b918-cd51-4bfa-ad5e-443291243754" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+    <list default="true" id="1148b918-cd51-4bfa-ad5e-443291243754" name="Changes" comment="Добавление модуля клиента">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaClient/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaClient/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaClient/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaClient/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaClient/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaClient/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaClient/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaClient/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaClient/src/main/java/ru/website/micro/client/eurekaclient/EurekaClientApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaClient/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaClient/src/test/java/ru/website/micro/client/eurekaclient/EurekaClientApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EurekaServer/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +31,16 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
-    <projectState path="$PROJECT_DIR$/EurekaClient">
+    <projectState path="$PROJECT_DIR$/">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/ApiGateway">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/AuthService">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/AuthService/AuthService">
       <ProjectState />
     </projectState>
     <projectState path="$PROJECT_DIR$/EurekaServer">
@@ -36,9 +50,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2s89THraXdEbgulSXWdqLzaFLH5" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -47,58 +61,91 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build .executor": "Run",
+    "Gradle.Build ApiGateway.executor": "Run",
+    "Gradle.Build AuthService.executor": "Run",
     "Gradle.Build EurekaServer.executor": "Run",
+    "Gradle.Build MyVideoHosting.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
     "Spring Boot.EurekaServerApplication.executor": "Run",
+    "deletionFromPopupRequiresConfirmation": "false",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "openjdk-22",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Уч/Java/MyVideoHosting/MyVideoHosting/AuthService",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "D:/Уч/Java/MyVideoHosting/MyVideoHosting/src/main/java/ru/webSite/micro/Main.java",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "File.Encoding",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.build.tools.auto.reload": "SELECTIVE",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.TypeScript",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Уч\Java\MyVideoHosting\MyVideoHosting" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.EurekaServerApplication">
-    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ApiGateway.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.website.micro.gateway.apigateway.ApiGatewayApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EurekaClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="EurekaClient.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.website.micro.client.eurekaclient.EurekaClientApplication" />
+    <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ru.webSite.micro.authservice.AuthService.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.website.micro.authservice.authservice.AuthServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="EurekaServer.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ru.website.micro.server.eurekaserver.EurekaServerApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.website.micro.server.eurekaserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.AuthServiceApplication" />
+      <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.EurekaServerApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -117,11 +164,23 @@
       <option name="presentableId" value="Default" />
       <updated>1737826342002</updated>
       <workItem from="1737826343013" duration="1996000" />
+      <workItem from="1737843236194" duration="987000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -133,5 +192,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

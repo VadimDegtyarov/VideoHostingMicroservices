@@ -1,3 +1,4 @@
 rootProject.name = 'MyVideoHosting'
 
 includeBuild 'EurekaServer'
+includeBuild 'ApiGateway'
