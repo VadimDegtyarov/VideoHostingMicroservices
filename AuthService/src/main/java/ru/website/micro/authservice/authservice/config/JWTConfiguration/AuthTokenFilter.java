@@ -61,7 +61,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     private String parseJwt(HttpServletRequest request) {
         if (request.getCookies() != null) {
             return Stream.of(request.getCookies())
-                    .filter(cookie -> cookie.getName().equals("__HOST-auth-token"))
+                    .filter(cookie -> cookie.getName().equals("__JWT-auth-token"))
                     .findFirst()
                     .map(Cookie::getValue)
                     .orElse(null);

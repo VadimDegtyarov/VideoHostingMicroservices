@@ -2,9 +2,9 @@ package ru.website.micro.authservice.authservice.config;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Comment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -24,6 +24,7 @@ import org.springframework.security.web.authentication.logout.CookieClearingLogo
 import ru.website.micro.authservice.authservice.config.JWTConfiguration.*;
 import ru.website.micro.authservice.authservice.model.DeactivatedToken;
 import ru.website.micro.authservice.authservice.model.TokenUserAuthInfo;
+import ru.website.micro.authservice.authservice.model.UserAuthInfo;
 import ru.website.micro.authservice.authservice.repository.DeactivatedTokenRepository;
 import ru.website.micro.authservice.authservice.service.UserAuthInfoService;
 
@@ -32,7 +33,7 @@ import ru.website.micro.authservice.authservice.service.UserAuthInfoService;
 @Configuration
 @RequiredArgsConstructor
 @EnableMethodSecurity
-public class SecurityConfiguration {
+public class SecurityConfiguration  {
     private final Logger logger = LoggerFactory.getLogger(SecurityConfiguration.class);
     private final DeactivatedTokenRepository deactivatedTokenRepository;
     private final UserAuthInfoService userAuthInfoService;
@@ -66,7 +67,11 @@ public class SecurityConfiguration {
                 .addFilterBefore(
                         authJwtTokenFilter(jwtUtil, userAuthInfoService),
                         UsernamePasswordAuthenticationFilter.class
-                );
+                                )
+                .oauth2Login(oAuth2->
+                        oAuth2.loginPage("/login")
+                                .defaultSuccessUrl("/")
+                        );
         http.logout(logout -> logout
                 .logoutUrl("/logout")
                 .addLogoutHandler(new CookieClearingLogoutHandler("__HOST-auth-token"))
@@ -89,7 +94,6 @@ public class SecurityConfiguration {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
-
     @Bean
     public DaoAuthenticationProvider authProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();

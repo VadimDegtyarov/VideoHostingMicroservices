@@ -1,10 +1,12 @@
 package ru.website.micro.authservice.authservice.service;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -12,24 +14,27 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Service;
 import ru.website.micro.authservice.authservice.Exception.ResourceNotFoundException;
 import ru.website.micro.authservice.authservice.dto.SignInUserDTO;
 import ru.website.micro.authservice.authservice.model.Role;
 import ru.website.micro.authservice.authservice.model.UserAuthInfo;
+import ru.website.micro.authservice.authservice.repository.RolesRepository;
 import ru.website.micro.authservice.authservice.repository.UserAuthRepository;
 
 import java.util.stream.Collectors;
 
 
-
 @Service
 public class UserAuthInfoService implements UserDetailsService {
     private final UserAuthRepository userAuthRepository;
-     final Logger logger = LoggerFactory.getLogger(UserAuthInfoService.class);
-    public UserAuthInfoService(UserAuthRepository userAuthRepository, @Lazy PasswordEncoder passwordEncoder) {
-        this.userAuthRepository = userAuthRepository;
+    final Logger logger = LoggerFactory.getLogger(UserAuthInfoService.class);
+    private final RolesRepository rolesRepository;
 
+    public UserAuthInfoService(UserAuthRepository userAuthRepository, @Lazy PasswordEncoder passwordEncoder, RolesRepository rolesRepository) {
+        this.userAuthRepository = userAuthRepository;
+        this.rolesRepository = rolesRepository;
     }
 
     private UserDetails loadByLogin(String login) throws UsernameNotFoundException {
@@ -75,9 +80,8 @@ public class UserAuthInfoService implements UserDetailsService {
             }
 
             return save(userAuthInfo);
-        }
-        catch (Exception e) {
-            logger.error("Ошибка создания пользователя:{}\n",e.getMessage(),e);
+        } catch (Exception e) {
+            logger.error("Ошибка создания пользователя:{}\n", e.getMessage(), e);
             return HttpStatus.INTERNAL_SERVER_ERROR;
         }
 
@@ -96,8 +100,16 @@ public class UserAuthInfoService implements UserDetailsService {
         return findByEmail(userEmail);
     }
 
-    public void setAdmin() {
+    public void setAdmin(HttpServletRequest request) {
         UserAuthInfo user = getCurrentUser();
-        user.addRole(new Role("ADMIN"));
+        Role role = rolesRepository.getByRole("ROLE_ADMIN");
+        user.addRole(role);
+        userAuthRepository.save(user);
+        UsernamePasswordAuthenticationToken authentication =
+                new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        logger.info("SetAdmin: {}", authentication.getPrincipal().toString());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
     }
 }

@@ -29,7 +29,7 @@ public class TokenCookieAuthenticationStrategy implements SessionAuthenticationS
             try {
                 logger.info("auth_info:{}",authentication.getPrincipal().toString());
                 String jwt = jwtUtil.generateJwtToken(authentication);
-                Cookie cookie = new Cookie("__HOST-auth-token", jwt);
+                Cookie cookie = new Cookie("__JWT-auth-token", jwt);
                 cookie.setPath("/");
                 cookie.setDomain(null);
                 cookie.setHttpOnly(true);
