@@ -1,12 +1,14 @@
 package ru.website.micro.authservice.userservice.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-
 import lombok.*;
+
 
 import java.util.Collection;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 @Data
@@ -17,11 +19,15 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class UserAuthInfo  {
-    @Getter
+public class UserAuthInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private UUID id;
+    @JsonManagedReference
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "user_id", unique = true)
+    private User user;
     @Column(name = "email")
     private String email;
     @Column(name = "phone_number")
@@ -36,9 +42,6 @@ public class UserAuthInfo  {
     )
     private Collection<Role> roles;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
     public String getPassword() {
         return passwordHash;

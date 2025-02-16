@@ -92,7 +92,7 @@ public class UserAuthInfoService implements UserDetailsService {
     }
 
     public UserDetailsService userDetailsService() {
-        return this::getByLogin;
+        return this::loadByLogin;
     }
 
     public UserAuthInfo getCurrentUser() {

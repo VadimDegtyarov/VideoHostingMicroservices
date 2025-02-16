@@ -49,12 +49,12 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         UserAuthInfo userAuthInfo = userAuthInfoService.getByLogin(userName);
         TokenUserAuthInfo userDetails = new TokenUserAuthInfo(userAuthInfo.getId(),
                 userAuthInfo.getEmail(), userAuthInfo.getPhoneNumber(), userAuthInfo.getPasswordHash(),
-                userAuthInfo.getRoles(), jwt);
+                userAuthInfo.getRoles(), jwt, userAuthInfo.getUser());
         UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-        logger.info("SetPrincipal: {}",authentication.getPrincipal().toString());
+        logger.info("SetPrincipal: {}", authentication.getPrincipal().toString());
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 

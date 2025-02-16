@@ -1,5 +1,6 @@
 package ru.website.micro.authservice.userservice.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +22,8 @@ public class User {
     private UUID id;
     @Column(name = "username")
     private String username;
-    @OneToOne(mappedBy = "user")
+    @JsonBackReference
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserAuthInfo userAuthInfo;
     @Column(name="first_name")
     private String firstName;
@@ -31,6 +33,8 @@ public class User {
     private Instant birthDate;
     @Column(name = "avatar_url")
     private String avatarURL;
+    @Column(name="num_of_subs")
+    private Integer numOfSubs;
     //Подписчики данного пользователя
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

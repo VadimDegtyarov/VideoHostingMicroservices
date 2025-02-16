@@ -1,5 +1,6 @@
 package ru.website.micro.authservice.authservice.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,20 +13,19 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "UserInfo")
+@Table(name = "user_info")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @Column(name = "username")
     private String username;
-    @OneToOne(mappedBy = "user")
+    @JsonBackReference
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserAuthInfo userAuthInfo;
-    @Column(name="num_of_subs")
-    private int numOfSubs;
-
     @Column(name="first_name")
     private String firstName;
     @Column(name="last_name")
@@ -34,6 +34,7 @@ public class User {
     private Instant birthDate;
     @Column(name = "avatar_url")
     private String avatarURL;
+    //Подписчики данного пользователя
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_subscribers",
@@ -41,6 +42,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     Collection<User> subscribers;
+    //Подписки данного пользователя на другие каналы
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_subscription",
