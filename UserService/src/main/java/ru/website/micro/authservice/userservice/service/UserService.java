@@ -3,18 +3,23 @@ package ru.website.micro.authservice.userservice.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import ru.website.micro.authservice.userservice.Exception.ResourceNotFoundException;
 import ru.website.micro.authservice.userservice.dto.AddInfoUserDTO;
+import ru.website.micro.authservice.userservice.model.Image;
 import ru.website.micro.authservice.userservice.model.User;
 import ru.website.micro.authservice.userservice.model.UserAuthInfo;
 import ru.website.micro.authservice.userservice.repository.UserAuthInfoRepository;
 import ru.website.micro.authservice.userservice.repository.UserRepository;
 
+import java.io.InputStream;
+import java.net.URLConnection;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.Optional;
@@ -26,6 +31,7 @@ import java.util.UUID;
 public class UserService {
     private final UserRepository userRepository;
     private final UserAuthInfoRepository userAuthInfoRepository;
+    private final ImageService imageService;
 
     private User getUserByLogin(String login) {
         if (login.contains("@")) {
@@ -76,13 +82,14 @@ public class UserService {
             throw ex;
         }
     }
-    public User getUserById(UUID id)
-    {
+
+    public User getUserById(UUID id) {
         return userRepository.findById(id).orElseThrow(
-                ()->new ResourceNotFoundException("User with id %s not found".formatted(id)));
+                () -> new ResourceNotFoundException("User with id %s not found".formatted(id)));
     }
+
     @Transactional
-    public ResponseEntity<Void> updateUser(UUID id,AddInfoUserDTO userDTO) {
+    public ResponseEntity<Void> updateUser(UUID id, AddInfoUserDTO userDTO) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Пользователь с данным id:%s не найден".formatted(id)));
@@ -103,29 +110,58 @@ public class UserService {
     }
 
     @Transactional
-    public HttpStatus subscribeUser(String loginCurrentUser, String loginTargetUser) {
-        User targetUser = getUserByLogin(loginTargetUser);
-        targetUser.getSubscribers().add(getUserByLogin(loginCurrentUser));
-        User user = getUserByLogin(loginCurrentUser);
-        user.getSubscription().add(targetUser);
-        user.setNumOfSubs(user.getNumOfSubs() + 1);
-        userRepository.save(user);
-        userRepository.save(targetUser);
-        return HttpStatus.OK;
+    public ResponseEntity<?> subscribeUser(String currentUserLogin, String targetUserLogin) {
+        if (currentUserLogin.equals(targetUserLogin)) {
+            return ResponseEntity.badRequest().body("Cannot subscribe to yourself");
+        }
+        User subscriber = getUserByLogin(currentUserLogin);
+        User channel = getUserByLogin(targetUserLogin);
+        if (subscriber.getSubscription().contains(channel)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Already subscribed");
+        }
+
+        subscriber.getSubscription().add(channel);
+        channel.setNumOfSubs(channel.getNumOfSubs() + 1);
+
+        // Hibernate автоматически синхронизирует изменения при коммите транзакции
+        return ResponseEntity.ok().build();
     }
 
     @Transactional
-    public HttpStatus unsubscribeUser(String loginCurrentUser, String loginTargetUser) {
-        User targetUser = getUserByLogin(loginTargetUser);
-        targetUser.getSubscribers().remove(getUserByLogin(loginCurrentUser));
-        User user = getUserByLogin(loginCurrentUser);
-        user.getSubscription().remove(targetUser);
-        if(user.getNumOfSubs() > 0) {
-            user.setNumOfSubs(user.getNumOfSubs() - 1);
+    public ResponseEntity<?> unsubscribeUser(String currentUserLogin, String targetUserLogin) {
+        User subscriber = getUserByLogin(currentUserLogin);
+
+        User channel = getUserByLogin(targetUserLogin);
+
+        if (!subscriber.getSubscription().contains(channel)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Subscription not found");
         }
+
+        subscriber.getSubscription().remove(channel);
+        channel.setNumOfSubs(channel.getNumOfSubs() - 1);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @Transactional
+    public void uploadImage(UUID id, Image image) {
+        User user = getUserById(id);
+        String fileName = imageService.upload(image);
+        user.setAvatarURL(fileName);
         userRepository.save(user);
-        userRepository.save(targetUser);
-        return HttpStatus.OK;
+    }
+
+    public ResponseEntity<InputStreamResource> getAvatar(UUID id) {
+        return getImage(id);
+    }
+
+    private ResponseEntity<InputStreamResource> getImage(UUID id) {
+        User user = getUserById(id);
+        InputStream inputStream = imageService.getImage(user.getAvatarURL());
+        String mimeType = URLConnection.guessContentTypeFromName(user.getAvatarURL());
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(mimeType))
+                .body(new InputStreamResource(inputStream));
     }
 
     public HttpStatus setBirth(String loginCurrentUser, Instant birthDate) {

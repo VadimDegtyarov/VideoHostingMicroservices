@@ -5,22 +5,20 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Entity
 @Data
-@Getter
-@Setter
 @Table(name = "users_auth_info")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class UserAuthInfo {
+@ToString(exclude = "user")
+public class UserAuthInfo implements UserDetails {
     @Id
     @Column(name = "user_id")
     private UUID id;

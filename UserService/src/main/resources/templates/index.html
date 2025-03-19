@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+</head>
+<body>
+<h1>Upload User Avatar</h1>
+
+<!-- Форма для загрузки изображения -->
+<form th:action="@{/userservice/api/v1/users/{id}/image(id=${id})}" method="post" enctype="multipart/form-data">
+    <label for="file">Select Image:</label>
+    <input type="file" id="file" name="file" accept="image/*" required>
+    <br><br>
+
+    <button type="submit">Upload Image</button>
+</form>
+<form th:action="@{/userservice/api/v1/users/{id}/image(id=${id})}" method="post" enctype="multipart/form-data">
+    <label for="file">Select Image:</label>
+    <input type="file" id="file" name="file" accept="image/*" required>
+    <br><br>
+
+    <button type="submit">Upload Image</button>
+</form>
+
+<p>Note: The user ID is automatically included in the form action.</p>
+</body>
+</html>

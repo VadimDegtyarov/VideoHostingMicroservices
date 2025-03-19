@@ -1,9 +1,8 @@
-package ru.website.micro.authservice.authservice.Controller;
+package ru.website.micro.authservice.authservice.controller;
 
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 @Controller
 public class Login {
-
 
     private ClientRegistrationRepository clientRegistrationRepository;
     @GetMapping("/login")

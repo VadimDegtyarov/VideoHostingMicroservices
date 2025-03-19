@@ -35,14 +35,7 @@ public class User {
     private String avatarURL;
     @Column(name="num_of_subs")
     private Integer numOfSubs;
-    //Подписчики данного пользователя
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_subscribers",
-            joinColumns = @JoinColumn(name = "user_sub_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    Collection<User> subscribers;
+
     //Подписки данного пользователя на другие каналы
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

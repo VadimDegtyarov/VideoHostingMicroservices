@@ -1,11 +1,12 @@
 package ru.website.micro.authservice.userservice.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.website.micro.authservice.userservice.dto.AddInfoUserDTO;
+import ru.website.micro.authservice.userservice.model.Image;
 import ru.website.micro.authservice.userservice.model.User;
-import ru.website.micro.authservice.userservice.model.UserAuthInfo;
 import ru.website.micro.authservice.userservice.service.UserService;
 
 import java.security.Principal;
@@ -44,5 +45,16 @@ public class UserController {
     public ResponseEntity<Void> unSubscribe(@RequestBody String loginTargetUser, Principal principal) {
         userService.unsubscribeUser(principal.getName(), loginTargetUser);
         return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{id}/image")
+    public void uploadAvatar(@PathVariable UUID id, @ModelAttribute Image image)
+    {
+        userService.uploadImage(id,image);
+
+    }
+    @GetMapping("/{id}/avatar")
+    public ResponseEntity<InputStreamResource> getAvatar(@PathVariable UUID id)
+    {
+         return userService.getAvatar(id);
     }
 }

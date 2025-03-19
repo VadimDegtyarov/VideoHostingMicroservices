@@ -62,6 +62,7 @@ public class UserAuthInfoService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        logger.info("zzzzzzzzzzzzzzzzzzzzzzzzzzzz");
         return loadByLogin(login);
     }
 

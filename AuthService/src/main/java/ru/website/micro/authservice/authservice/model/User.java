@@ -2,10 +2,7 @@ package ru.website.micro.authservice.authservice.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.Instant;
 import java.util.Collection;
@@ -17,6 +14,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "userAuthInfo")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,22 +24,15 @@ public class User {
     @JsonBackReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserAuthInfo userAuthInfo;
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
-    @Column(name="birth_date")
+    @Column(name = "birth_date")
     private Instant birthDate;
     @Column(name = "avatar_url")
     private String avatarURL;
-    //Подписчики данного пользователя
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_subscribers",
-            joinColumns = @JoinColumn(name = "user_sub_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    Collection<User> subscribers;
+
     //Подписки данного пользователя на другие каналы
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
