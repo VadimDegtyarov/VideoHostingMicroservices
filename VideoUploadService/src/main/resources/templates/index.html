@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Upload Service</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .upload-section, .video-preview {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .video-player {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Video Upload Service</h1>
+
+    <!-- Форма для загрузки видео -->
+    <div class="upload-section">
+        <h2>Upload New Video</h2>
+        <form id="uploadForm" th:action="@{/videouploadservice/api/v1/users/{userId}/videos(userId=${userId})}"
+              method="post" enctype="multipart/form-data">
+            <input type="hidden" name="userId" th:value="${userId}">
+
+            <div class="form-group">
+                <label for="videoName">Video Title:</label>
+                <input type="text" id="videoName" name="videoName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="videoFile">Video File:</label>
+                <input type="file" id="videoFile" name="videoFile" accept="video/*" required>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Thumbnail Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tags">Tags (comma separated):</label>
+                <input type="text" id="tags" name="tags">
+            </div>
+
+            <button type="submit">Upload Video</button>
+        </form>
+    </div>
+
+
+</div>
+
+<script>
+    // Обработка успешной загрузки
+    document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+
+        try {
+            const response = await fetch(e.target.action, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                alert('Video uploaded successfully!');
+                e.target.reset();
+            } else {
+                alert('Error uploading video');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred');
+        }
+    });
+
+    // Превью видео перед загрузкой
+    document.getElementById('videoFile').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const videoURL = URL.createObjectURL(file);
+            document.getElementById('videoSource').src = videoURL;
+            document.querySelector('video').style.display = 'block';
+        }
+    });
+
+    // Превью изображения
+    document.getElementById('image').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('thumbnailPreview').src = e.target.result;
+                document.getElementById('thumbnailPreview').style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+</body>
+</html>

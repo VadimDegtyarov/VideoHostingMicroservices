@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр видео</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .video-preview {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .video-player {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        .thumbnail {
+            max-width: 300px;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Просмотр видео</h1>
+
+    <div class="video-preview">
+        <video class="video-player" controls>
+            <source th:src="@{/videouploadservice/api/v1/users/{userId}/videos/{videoId}(userId=${userId}, videoId=${videoId})}" type="video/mp4">
+            Ваш браузер не поддерживает тег video.
+        </video>
+        <h3>Миниатюра видео</h3>
+        <img class="thumbnail" th:src="@{/videouploadservice/api/v1/users/{userId}/videos/{videoId}/thumbnail(userId=${userId}, videoId=${videoId})}" alt="Миниатюра видео">
+    </div>
+
+    <div>
+        <a th:href="@{/}" style="text-decoration:none; color: #4CAF50;">Вернуться на главную</a>
+    </div>
+</div>
+</body>
+</html>
