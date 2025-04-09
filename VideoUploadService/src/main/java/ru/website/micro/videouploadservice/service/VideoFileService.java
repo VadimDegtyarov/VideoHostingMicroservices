@@ -86,11 +86,13 @@ public class VideoFileService {
             );
         }
 
-        // 2. Определение реального типа
+
         try (InputStream stream = videoFile.getInputStream()) {
             String realType = tika.detect(stream);
 
-            // 3. Сравнение с заголовком
+            if (realType.equals("application/x-matroska")) {
+                realType = "video/x-matroska";
+            }
             if (!realType.equals(headerType)) {
                 throw new VideoUploadException(
                         "Content-Type mismatch. Declared: %s, Actual: %s"
@@ -98,8 +100,6 @@ public class VideoFileService {
                         HttpStatus.BAD_REQUEST
                 );
             }
-
-            // 4. Проверка поддержки формата
             if (!AllowedVideoFormats.getAllVideoFormats().contains(realType)) {
                 throw new VideoUploadException(
                         "Unsupported file type: " + realType,

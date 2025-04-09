@@ -3,11 +3,14 @@ package ru.website.micro.videouploadservice.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
+import org.apache.tika.Tika;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import ru.website.micro.videouploadservice.dto.ImportVideoDto;
 import ru.website.micro.videouploadservice.exception.ResourceNotFoundException;
 import ru.website.micro.videouploadservice.exception.VideoUploadException;
@@ -20,6 +23,8 @@ import ru.website.micro.videouploadservice.repository.VideoRepository;
 import ru.website.micro.videouploadservice.repository.user.UserRepository;
 
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLConnection;
 
@@ -38,13 +43,13 @@ public class VideoService {
     private final ImageFileService imageFileService;
     private final UserRepository userRepository;
     private final TagRepository tagRepository;
-
+    private final Tika tika;
     private User getUserById(UUID id) {
         return userRepository.findById(id).orElseThrow(()
                 -> new ResourceNotFoundException("Пользователь с id:%s не найден".formatted(id)));
     }
 
-    private Video getVideoById(Long id) {
+    public Video getVideoById(Long id) {
         return videoRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Видео с id: %s не найдено".formatted(id)));
     }
@@ -94,14 +99,30 @@ public class VideoService {
                 .body(new InputStreamResource(inputStream));
     }
 
-    public ResponseEntity<InputStreamResource> getVideo(Long id) {
-        Video video = getVideoById(id);
-        String videoFileName = video.getVideoFileUrl();
-        InputStream videoStream = videoFileService.getVideo(videoFileName);
-        String mimeType = URLConnection.guessContentTypeFromName(videoFileName);
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(mimeType))
-                .body(new InputStreamResource(videoStream));
+    public ResponseEntity<InputStreamResource> getVideo(Long id) throws IOException {
+        try {
+            Video video = getVideoById(id);
+            String videoFileName = video.getVideoFileUrl();
+
+            // Получаем поток и буферизуем его
+            InputStream rawStream = videoFileService.getVideo(videoFileName);
+            BufferedInputStream bufferedStream = new BufferedInputStream(rawStream);
+            bufferedStream.mark(Integer.MAX_VALUE);
+
+            // Определяем MIME-тип
+            String mimeType = tika.detect(bufferedStream);
+            bufferedStream.reset();
+
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(mimeType))
+                    .body(new InputStreamResource(bufferedStream));
+        } catch (IOException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Ошибка получения видео",
+                    e
+            );
+        }
     }
 
     public ResponseEntity<InputStreamResource> getThumbnail(Long id) {

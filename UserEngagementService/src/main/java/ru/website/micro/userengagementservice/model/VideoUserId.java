@@ -1,4 +1,4 @@
-package ru.website.micro.videouploadservice.model;
+package ru.website.micro.userengagementservice.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

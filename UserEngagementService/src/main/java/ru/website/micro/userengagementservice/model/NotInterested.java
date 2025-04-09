@@ -1,18 +1,19 @@
-package ru.website.micro.videouploadservice.model;
+package ru.website.micro.userengagementservice.model;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.website.micro.videouploadservice.model.user.User;
+import ru.website.micro.userengagementservice.model.user.User;
 
-@Entity
+
 @Data
-@Table(name = "watch_later")
+@Entity(name = "not_interested")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class WatchLater {
+public class NotInterested {
     @EmbeddedId
     private VideoUserId id;
 
@@ -25,5 +26,4 @@ public class WatchLater {
     @ManyToOne
     @JoinColumn(name = "video_id")
     private Video video;
-
 }

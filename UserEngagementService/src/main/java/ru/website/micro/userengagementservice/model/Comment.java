@@ -1,14 +1,22 @@
-package ru.website.micro.videouploadservice.model;
+package ru.website.micro.userengagementservice.model;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import ru.website.micro.videouploadservice.model.user.User;
+import ru.website.micro.userengagementservice.model.user.User;
+
 
 import java.time.LocalDate;
-@Deprecated
+
 @Entity
 @Table(name = "comments")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
