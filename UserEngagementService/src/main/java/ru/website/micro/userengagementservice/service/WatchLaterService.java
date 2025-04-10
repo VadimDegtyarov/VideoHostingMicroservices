@@ -1,4 +1,5 @@
 package ru.website.micro.userengagementservice.service;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,16 +24,16 @@ import java.util.UUID;
 public class WatchLaterService {
     private final WatchLaterRepository watchLaterRepository;
     private final UserVideoHelper userVideoHelper;
-    public HttpStatus addingWatchLater(UUID userId, Long videoId) {
+
+    public WatchLater addingWatchLater(UUID userId, Long videoId) {
         User user = userVideoHelper.getUserById(userId);
         Video video = userVideoHelper.getVideoById(videoId);
 
-        Optional<WatchLater> existing  = watchLaterRepository.getWatchLatersByUserAndVideo(user,video);
-        if(existing .isPresent()){
+        Optional<WatchLater> existing = watchLaterRepository.getWatchLaterByUserAndVideo(user, video);
+        if (existing.isPresent()) {
             watchLaterRepository.delete(existing.get());
-            return HttpStatus.NO_CONTENT;
-        }
-        else {
+            return null;
+        } else {
             VideoUserId videoUserId = VideoUserId.builder()
                     .userId(userId)
                     .videoId(videoId).build();
@@ -40,26 +41,32 @@ public class WatchLaterService {
                     .id(videoUserId)
                     .video(userVideoHelper.getVideoById(videoId))
                     .user(userVideoHelper.getUserById(userId)).build();
-            watchLaterRepository.save(watchLater);
-            return HttpStatus.CREATED;
+
+            return watchLaterRepository.save(watchLater);
         }
 
     }
-    public ResponseEntity<Page<Video>> getWatchLater(UUID userId, Pageable pageable, Long lastVideoId) {
-        Page<Video> page = watchLaterRepository.findWatchHistoryByUser(userId,lastVideoId,pageable);
-        return page.isEmpty()?ResponseEntity.noContent().build():ResponseEntity.ok(page);
+
+    public Page<Video> getWatchLaterVideos(UUID userId, Pageable pageable, Long lastVideoId) {
+        Page<Video> page = watchLaterRepository.findWatchHistoryByUser(userId, lastVideoId, pageable);
+        return page.isEmpty() ? null : page;
     }
-    public ResponseEntity<Boolean> isVideoInWatchLater(UUID userId, Long videoId) {
+
+    public Boolean isVideoInWatchLater(UUID userId, Long videoId) {
         try {
             Optional<WatchLater> watchLater = watchLaterRepository
                     .findByUserIdAndVideoId(userId, videoId);
 
-            return ResponseEntity.ok(
-                    watchLater.isPresent()
-            );
+            return watchLater.isPresent();
         } catch (ResourceNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
+    }
+
+    public void removeFromWatchLater(UUID userId, Long videoId) {
+        watchLaterRepository.delete(watchLaterRepository.getWatchLaterByUserIdAndVideoId(userId, videoId).orElseThrow(
+                () -> new ResourceNotFoundException("Видео у пользователя с id %s видео с id %s не добавлено в 'смотреть позже'"
+                        .formatted(userId, videoId))));
     }
 
 }

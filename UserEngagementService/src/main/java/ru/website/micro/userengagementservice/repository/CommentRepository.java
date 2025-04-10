@@ -6,9 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import ru.website.micro.userengagementservice.model.Comment;
-import ru.website.micro.userengagementservice.model.Video;
 
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -36,7 +35,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
             ORDER BY c.id DESC
             """)
     Page<Comment> getCommentsByUserId(
-            @Param("userId") Long userId,
+            @Param("userId") UUID userId,
             @Param("lastCommentId") Long lastCommentId,
             Pageable pageable);
 

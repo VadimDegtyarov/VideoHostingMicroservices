@@ -19,14 +19,14 @@ public interface WatchHistoryRepository extends JpaRepository<WatchHistory, Vide
     Optional<WatchHistory> findByUserIdAndVideoId(UUID userId, Long videoId);
 
     @Query("""
-    SELECT wh.video 
-    FROM WatchHistory wh
-    WHERE wh.user.id = :userId
-    AND (:lastVideoId IS NULL OR wh.video.id < :lastVideoId)
-    ORDER BY wh.video.id DESC
-    """)
+            SELECT wh.video
+            FROM WatchHistory wh
+            WHERE wh.user.id = :userId
+            AND (:lastVideoId IS NULL OR wh.video.id < :lastVideoId)
+            ORDER BY wh.video.id DESC
+            """)
     Page<Video> findWatchHistoryByUser(
             @Param("userId") UUID userId,
-            @Param("lastVideoId") Long lastVideoId,
+            @Param("lastVideoId") Long lastTargetId,
             Pageable pageable);
 }

@@ -23,7 +23,7 @@ public class NotInterestedService {
     private final NotInterestedRepository notInterestedRepository;
     private final UserVideoHelper userVideoHelper;
 
-    public HttpStatus addingNotInterested(UUID userId, Long videoId) {
+    public boolean toggleNotInterested(UUID userId, Long videoId) {
         User user = userVideoHelper.getUserById(userId);
         Video video = userVideoHelper.getVideoById(videoId);
 
@@ -31,7 +31,7 @@ public class NotInterestedService {
 
         if (existing.isPresent()) {
             notInterestedRepository.delete(existing.get());
-            return HttpStatus.NO_CONTENT;
+            return false;
         } else {
             VideoUserId videoUserId = VideoUserId.builder()
                     .userId(userId)
@@ -45,17 +45,16 @@ public class NotInterestedService {
                     .build();
 
             notInterestedRepository.save(notInterested);
-            return HttpStatus.CREATED;
+            return true;
         }
     }
-    public ResponseEntity<NotInterestedDto> isVideoInNotInterested(UUID userId, Long videoId) {
+
+    public Boolean isVideoInNotInterested(UUID userId, Long videoId) {
         try {
             Optional<NotInterested> notInterested = notInterestedRepository
                     .findByUserIdAndVideoId(userId, videoId);
 
-            return ResponseEntity.ok(
-                    new NotInterestedDto(notInterested.isPresent())
-            );
+            return notInterested.isPresent();
         } catch (ResourceNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }

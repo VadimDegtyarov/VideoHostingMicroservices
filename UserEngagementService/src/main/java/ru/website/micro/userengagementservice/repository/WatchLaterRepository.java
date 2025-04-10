@@ -14,7 +14,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface WatchLaterRepository extends JpaRepository<WatchLater, VideoUserId> {
-    Optional<WatchLater> getWatchLatersByUserAndVideo(User user, Video video);
+    Optional<WatchLater> getWatchLaterByUserAndVideo(User user, Video video);
+    Optional<WatchLater> getWatchLaterByUserIdAndVideoId(UUID userId, Long videoId);
 
     Optional<WatchLater> findByUserIdAndVideoId(UUID userId, Long videoId);
 

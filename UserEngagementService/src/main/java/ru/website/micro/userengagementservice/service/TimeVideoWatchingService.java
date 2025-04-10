@@ -20,7 +20,7 @@ public class TimeVideoWatchingService {
     private final TimeVideoWatchingRepository timeVideoWatchingRepository;
     private final UserVideoHelper userVideoHelper;
 
-    public HttpStatus addingTimeWatching(UUID userId, Long videoId, Integer timeWatching) {
+    public TimeVideoWatching addingTimeWatching(UUID userId, Long videoId, Integer timeWatching) {
         VideoUserId videoUserId = VideoUserId.builder()
                 .userId(userId)
                 .videoId(videoId).build();
@@ -30,17 +30,24 @@ public class TimeVideoWatchingService {
                 .user(userVideoHelper.getUserById(userId))
                 .duration(timeWatching)
                 .build();
-        timeVideoWatchingRepository.save(timeVideoWatching);
-        return HttpStatus.CREATED;
+
+        return timeVideoWatchingRepository.save(timeVideoWatching);
+
     }
-    public ResponseEntity<Integer> getTimeWatching(UUID userId, Long videoId) {
+
+    public TimeVideoWatching updateTimeWatching(UUID userId, Long videoId, Integer timeWatching) {
+        TimeVideoWatching timeVideoWatching = timeVideoWatchingRepository.findByUserIdAndVideoId(userId, videoId).orElseThrow(() -> new ResourceNotFoundException("Время просмотра ранее не отслеживалось"));
+        timeVideoWatching.setDuration(timeWatching);
+
+        return timeVideoWatchingRepository.save(timeVideoWatching);
+    }
+
+    public Integer getTimeWatching(UUID userId, Long videoId) {
         try {
             Optional<TimeVideoWatching> timeVideoWatching = timeVideoWatchingRepository
                     .findByUserIdAndVideoId(userId, videoId);
 
-            return ResponseEntity.ok(
-                    timeVideoWatching.get().getDuration()
-            );
+            return timeVideoWatching.get().getDuration();
         } catch (ResourceNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }

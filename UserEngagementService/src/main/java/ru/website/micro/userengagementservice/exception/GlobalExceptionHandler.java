@@ -36,6 +36,12 @@ public class GlobalExceptionHandler {
         log.error(e.getMessage(),e);
         return new ResponseEntity<>(new AppError(HttpStatus.CONFLICT.value(),e.getMessage()),HttpStatus.CONFLICT);
     }
+    @ExceptionHandler(UnsupportedTargetTypeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<AppError> handleDuplicateException(UnsupportedTargetTypeException e){
+        log.error(e.getMessage(),e);
+        return new ResponseEntity<>(new AppError(HttpStatus.CONFLICT.value(),e.getMessage()),HttpStatus.CONFLICT);
+    }
 
 
 }
