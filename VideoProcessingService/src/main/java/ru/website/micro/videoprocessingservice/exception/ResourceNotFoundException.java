@@ -1,4 +1,4 @@
-package ru.website.micro.videouploadservice.exception;
+package ru.website.micro.videoprocessingservice.exception;
 
 import org.springframework.http.HttpStatus;
 
@@ -6,10 +6,6 @@ public class ResourceNotFoundException extends RuntimeException {
     private final HttpStatus httpStatus;
     public ResourceNotFoundException(String message) {
         super(message);
-        this.httpStatus = HttpStatus.NOT_FOUND;
-    }
-    public ResourceNotFoundException(String message,Throwable throwable) {
-        super(message,throwable);
         this.httpStatus = HttpStatus.NOT_FOUND;
     }
     public String getDetailsMessage() {

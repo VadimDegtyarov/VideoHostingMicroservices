@@ -1,8 +1,11 @@
-package ru.website.micro.videouploadservice.model.user;
+package ru.website.micro.videoprocessingservice.model.user;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 import java.util.Collection;
@@ -14,7 +17,6 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = "userAuthInfo")
 public class User {
     @Id
     private UUID id;

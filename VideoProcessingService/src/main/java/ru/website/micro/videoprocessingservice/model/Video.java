@@ -1,16 +1,17 @@
-package ru.website.micro.userengagementservice.model;
+package ru.website.micro.videoprocessingservice.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import ru.website.micro.userengagementservice.model.user.User;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import ru.website.micro.videoprocessingservice.model.user.User;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -36,6 +37,17 @@ public class Video {
 
     @Column(name = "num_of_dislikes", columnDefinition = "integer default 0")
     private Integer numOfDislikes = 0;
+    @OneToMany(
+            mappedBy = "video",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @Fetch(FetchMode.JOIN)
+    private List<VideoQuality> qualities = new ArrayList<>();
+
 
     @Column(name = "thumbnail_url")
     private String thumbnailUrl;

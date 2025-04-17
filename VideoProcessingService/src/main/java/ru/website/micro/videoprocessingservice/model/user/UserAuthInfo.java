@@ -1,4 +1,4 @@
-package ru.website.micro.videouploadservice.model.user;
+package ru.website.micro.videoprocessingservice.model.user;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = "user")
+
 public class UserAuthInfo {
     @Id
     @Column(name = "user_id")

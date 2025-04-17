@@ -5,26 +5,172 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1148b918-cd51-4bfa-ad5e-443291243754" name="Changes" comment="Добавлен микросервис UserEngagementService">
-      <change afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/CommentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/NotInterestedController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/ReactionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/TimeVideoWatchingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/WatchHistoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/WatchLaterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/UnsupportedTargetTypeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/config/AsyncConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/config/MinioConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/controller/VideoStreamController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/dto/ImportVideoDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/enums/AllowedVideoFormats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/exception/AppError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/exception/ImageUploadException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/exception/VideoUploadException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/model/Image.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/model/Tag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/model/Video.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/model/VideoChunk.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/model/VideoFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/model/VideoQuality.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/model/VideoUserId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/model/user/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/model/user/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/model/user/UserAuthInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/prop/MinioProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/repository/TagRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/repository/VideoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/repository/user/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/service/ImageFileService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/service/StreamingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/service/UserVideoHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/service/VideoFileService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice/service/VideoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/VideoQuality.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/service/VideoProcessingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VideoUploadService/src/main/resources/templates/videos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApiGateway/src/main/java/ru/website/micro/gateway/apigateway/Errors/NoPopupAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/src/main/java/ru/website/micro/gateway/apigateway/Errors/NoPopupAuthenticationEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApiGateway/src/main/java/ru/website/micro/gateway/apigateway/JWTConfiguration/JWTUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/src/main/java/ru/website/micro/gateway/apigateway/JWTConfiguration/JWTUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApiGateway/src/main/java/ru/website/micro/gateway/apigateway/JWTConfiguration/JwtCookieAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/src/main/java/ru/website/micro/gateway/apigateway/JWTConfiguration/JwtCookieAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApiGateway/src/main/java/ru/website/micro/gateway/apigateway/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/src/main/java/ru/website/micro/gateway/apigateway/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/Exception/AppError.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/Exception/AppError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/Exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/Exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/Exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/Exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/controller/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/controller/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/dto/SignInUserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/dto/SignInUserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/dto/SignUpUserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/dto/SignUpUserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/model/DeactivatedToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/model/DeactivatedToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/model/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/model/UserAuthInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/model/UserAuthInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/repository/DeactivatedTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/repository/DeactivatedTokenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/repository/RolesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/repository/RolesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/repository/UserAuthRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/repository/UserAuthRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthService/src/main/java/ru/website/micro/authservice/authservice/service/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaServer/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/EurekaServer/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaServer/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/EurekaServer/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaServer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/EurekaServer/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaServer/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EurekaServer/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaServer/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/EurekaServer/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaServer/src/main/java/ru/website/micro/server/eurekaserver/EurekaServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/EurekaServer/src/main/java/ru/website/micro/server/eurekaserver/EurekaServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EurekaServer/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EurekaServer/src/test/java/ru/website/micro/server/eurekaserver/EurekaServerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/EurekaServer/src/test/java/ru/website/micro/server/eurekaserver/EurekaServerApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/NotInterestedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/NotInterestedController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/ReactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/ReactionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/TimeVideoWatchingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/TimeVideoWatchingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/WatchHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/WatchHistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/WatchLaterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/controller/WatchLaterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/dto/NotInterestedDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/dto/NotInterestedDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/dto/ReactionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/dto/ReactionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/enums/ReactionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/enums/ReactionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/enums/TargetType.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/enums/TargetType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/AppError.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/AppError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/DuplicateResourceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/DuplicateResourceException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/ImageUploadException.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/ImageUploadException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/UnsupportedTargetTypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/UnsupportedTargetTypeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/VideoUploadException.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/exception/VideoUploadException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/mapper/ReactionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/mapper/ReactionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/NotInterested.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/NotInterested.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/Reaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/Reaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/ReactionId.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/ReactionId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/TimeVideoWatching.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/TimeVideoWatching.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/Video.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/VideoUserId.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/VideoUserId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/WatchHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/WatchHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/WatchLater.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/WatchLater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/user/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/user/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/user/UserAuthInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/model/user/UserAuthInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/NotInterestedRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/NotInterestedRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/ReactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/ReactionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/TimeVideoWatchingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/TimeVideoWatchingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/VideoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/VideoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/WatchHistoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/WatchHistoryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/WatchLaterRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/WatchLaterRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/repository/user/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/NotInterestedService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/NotInterestedService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/ReactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/ReactionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/TimeVideoWatchingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/TimeVideoWatchingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/UserVideoHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/UserVideoHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/WatchHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/WatchHistoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/WatchLaterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserEngagementService/src/main/java/ru/website/micro/userengagementservice/service/WatchLaterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/Exception/AppError.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/Exception/AppError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/Exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/Exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/Exception/ImageUploadException.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/Exception/ImageUploadException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/Exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/Exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/config/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/controller/Pages/SetImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/controller/Pages/SetImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/dto/AddInfoUserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/dto/AddInfoUserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/dto/SubscriptionRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/dto/SubscriptionRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/model/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/model/Image.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/model/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/model/UserAuthInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/model/UserAuthInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/prop/MinioProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/prop/MinioProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/repository/UserAuthInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/repository/UserAuthInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/service/ImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/service/ImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/ru/website/micro/userservice/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/config/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/controller/VideoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/controller/page/checkPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/controller/page/checkPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/dto/ImportVideoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/dto/ImportVideoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/enums/AllowedVideoFormats.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/enums/AllowedVideoFormats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/exception/AppError.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/exception/AppError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/exception/ImageUploadException.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/exception/ImageUploadException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/exception/VideoUploadException.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/exception/VideoUploadException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/Image.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/Video.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/VideoFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/VideoFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/VideoUserId.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/VideoUserId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/user/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/user/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/user/UserAuthInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/model/user/UserAuthInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/prop/MinioProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/prop/MinioProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/repository/TagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/repository/TagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/repository/VideoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/repository/VideoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/repository/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/repository/user/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/service/ImageFileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/service/ImageFileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/service/UserVideoHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/service/UserVideoHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/service/VideoFileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/service/VideoFileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/java/ru/website/micro/videouploadservice/service/VideoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoUploadService/src/main/resources/templates/watching.html" beforeDir="false" afterPath="$PROJECT_DIR$/VideoUploadService/src/main/resources/templates/watching.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +200,9 @@
       <ProjectState />
     </projectState>
     <projectState path="$PROJECT_DIR$/UserService">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/VideoProcessingService">
       <ProjectState />
     </projectState>
     <projectState path="$PROJECT_DIR$/VideoUploadService">
@@ -124,6 +273,7 @@
     &quot;Gradle.Build MyVideoHosting.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Build UserEngagementService.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Build UserService.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build VideoProcessingService.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Build VideoUploadService.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.VideoUploadService [dependencies].executor&quot;: &quot;Run&quot;,
     &quot;OpenAPI/Swagger Code Generator.openapi.json.executor&quot;: &quot;Run&quot;,
@@ -141,6 +291,7 @@
     &quot;Spring Boot.EurekaServerApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.UserEngagementServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.VideoProcessingServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.VideoUploadServiceApplication (1).executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.VideoUploadServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
@@ -148,7 +299,7 @@
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-22&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Teach/Java/MyVideoHosting/MyVideoHosting/UserEngagementService/src/main/java/ru/website/micro/authservice/userengagementservice/model/user&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Teach/Java/MyVideoHosting/MyVideoHosting/VideoProcessingService/src/main/java/ru/website/micro/videoprocessingservice&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -172,11 +323,11 @@
       <recent name="ru.website.micro.gateway.apigateway.JWTValidation" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Teach\Java\MyVideoHosting\MyVideoHosting\VideoProcessingService\src\main\java\ru\website\micro\videoprocessingservice" />
+      <recent name="D:\Teach\Java\MyVideoHosting\MyVideoHosting\VideoProcessingService\src\main\java\ru\website\micro\authservice\videoprocessingservice" />
       <recent name="D:\Teach\Java\MyVideoHosting\MyVideoHosting\UserEngagementService\src\main\java\ru\website\micro\authservice\userengagementservice\model\user" />
       <recent name="D:\Teach\Java\MyVideoHosting\MyVideoHosting\UserEngagementService\src\main\java\ru\website\micro\authservice\userengagementservice\repository\user" />
       <recent name="D:\Teach\Java\MyVideoHosting\MyVideoHosting\UserEngagementService\src\main\java\ru\website\micro\authservice\userengagementservice\exception" />
-      <recent name="D:\Teach\Java\MyVideoHosting\MyVideoHosting\UserEngagementService\src\main\java\ru\website\micro\authservice\userengagementservice" />
-      <recent name="D:\Teach\Java\MyVideoHosting\MyVideoHosting\VideoUploadService\src\main\java\ru\website\micro\videouploadservice\model\user" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Teach\Java\MyVideoHosting\MyVideoHosting\AuthService\src\main\resources\templates" />
@@ -185,11 +336,11 @@
       <recent name="D:\Уч\Java\MyVideoHosting\MyVideoHosting" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.website.micro.authservice.videoprocessingservice.service" />
+      <recent name="ru.website.micro.authservice.videoprocessingservice.model" />
       <recent name="ru.website.micro.authservice.userengagementservice.model" />
       <recent name="ru.website.micro.authservice.userengagementservice.service" />
       <recent name="ru.website.micro.videouploadservice.controller.page" />
-      <recent name="ru.website.micro.videouploadservice.exception" />
-      <recent name="ru.website.micro.videouploadservice.repository.user" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -279,9 +430,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="VideoProcessingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="VideoProcessingService.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.website.micro.videoprocessingservice.VideoProcessingServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="VideoUploadServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="VideoUploadService.main" />
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ru.website.micro.videouploadservice.VideoUploadServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -307,12 +473,13 @@
       <item itemvalue="Application.VideoUploadServiceApplication" />
       <item itemvalue="Gradle.VideoUploadService [dependencies]" />
       <item itemvalue="OpenAPI/Swagger Code Generator.openapi.json" />
-      <item itemvalue="Spring Boot.UserEngagementServiceApplication" />
       <item itemvalue="Spring Boot.EurekaServerApplication" />
       <item itemvalue="Spring Boot.ApiGatewayApplication" />
       <item itemvalue="Spring Boot.AuthServiceApplication" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
+      <item itemvalue="Spring Boot.VideoProcessingServiceApplication" />
       <item itemvalue="Spring Boot.VideoUploadServiceApplication" />
+      <item itemvalue="Spring Boot.UserEngagementServiceApplication" />
     </list>
     <recent_temporary>
       <list>
@@ -406,6 +573,10 @@
       <workItem from="1744231872991" duration="2798000" />
       <workItem from="1744283743434" duration="6795000" />
       <workItem from="1744318746431" duration="7296000" />
+      <workItem from="1744484829952" duration="12648000" />
+      <workItem from="1744567337081" duration="12510000" />
+      <workItem from="1744664950936" duration="9000" />
+      <workItem from="1744929329127" duration="465000" />
     </task>
     <task id="LOCAL-00001" summary="Добавление(Изменение) модуля для контроля авторизации и аунтефикации">
       <option name="closed" value="true" />

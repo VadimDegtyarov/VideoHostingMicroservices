@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +16,7 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             text-align: center;
+            position: relative;
         }
         .video-player {
             width: 100%;
@@ -30,6 +30,40 @@
             margin-left: auto;
             margin-right: auto;
         }
+        .quality-selector {
+            margin: 20px 0;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        .quality-selector select, .quality-selector button {
+            padding: 8px 12px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .quality-selector button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        .return-button {
+            text-decoration: none;
+            color: #4CAF50;
+        }
     </style>
 </head>
 <body>
@@ -37,17 +71,97 @@
     <h1>Просмотр видео</h1>
 
     <div class="video-preview">
-        <video class="video-player" controls>
-            <source th:src="@{/videouploadservice/api/v1/users/{userId}/videos/{videoId}(userId=${userId}, videoId=${videoId})}" type="video/mp4">
-            Ваш браузер не поддерживает тег video.
+        <div class="loading-overlay" id="loadingOverlay">Загрузка видео...</div>
+        <video class="video-player" controls id="videoPlayer">
+            <!-- Источник будет добавлен автоматически через JavaScript -->
         </video>
+
         <h3>Миниатюра видео</h3>
-        <img class="thumbnail" th:src="@{/videouploadservice/api/v1/users/{userId}/videos/{videoId}/thumbnail(userId=${userId}, videoId=${videoId})}" alt="Миниатюра видео">
+        <img class="thumbnail"
+             th:src="@{/videouploadservice/api/v1/videos/{videoId}/thumbnail(userId=${userId}, videoId=${videoId})}"
+             alt="Миниатюра видео">
+    </div>
+
+    <div class="quality-selector">
+        <select id="qualitySelect">
+            <!-- Опции будут добавлены автоматически через JavaScript -->
+        </select>
+        <button onclick="changeQuality()">Применить качество</button>
     </div>
 
     <div>
-        <a th:href="@{/}" style="text-decoration:none; color: #4CAF50;">Вернуться на главную</a>
+        <a th:href="@{/}" class="return-button">Вернуться на главную</a>
     </div>
 </div>
+
+<script th:inline="javascript">
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const videoId = /*[[${videoId}]]*/ 'defaultId';
+        const userId = /*[[${userId}]]*/ 'defaultUserId';
+        const defaultQuality = '1080p';
+        const availableQualities =['1080p', '720p', '480p'];
+
+        // Инициализация селектора качества
+        initQualitySelector(availableQualities, defaultQuality);
+
+        // Автоматическая загрузка видео при открытии страницы
+        loadVideo(videoId, defaultQuality);
+    });
+
+    // Инициализация выпадающего списка качеств
+    function initQualitySelector(qualities, defaultQuality) {
+        const select = document.getElementById('qualitySelect');
+        select.innerHTML = qualities.map(q =>
+            `<option value="${q}" ${q === defaultQuality ? 'selected' : ''}>${q}</option>`
+        ).join('');
+    }
+
+    // Загрузка видео с указанным качеством
+    function loadVideo(videoId, quality) {
+        const video = document.getElementById('videoPlayer');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        // Показать индикатор загрузки
+        loadingOverlay.style.display = 'flex';
+
+        // Создать новый источник видео
+        const source = document.createElement('source');
+        source.src = `/videoprocessingservice/api/v1/video/${videoId}/stream?quality=${quality}`;
+        source.type = 'video/mp4';
+
+        // Обработчики событий
+        source.addEventListener('error', () => handleVideoError(loadingOverlay));
+        video.addEventListener('canplay', () => {
+            loadingOverlay.style.display = 'none';
+            video.play().catch(e => console.log('Автовоспроизведение заблокировано:', e));
+        });
+
+        // Очистить предыдущие источники и добавить новый
+        video.innerHTML = '';
+        video.appendChild(source);
+        video.load();
+    }
+
+    // Смена качества видео
+    function changeQuality() {
+        const videoId = /*[[${videoId}]]*/ 'defaultId';
+        const quality = document.getElementById('qualitySelect').value;
+        loadVideo(videoId, quality);
+
+        // Обновить URL без перезагрузки страницы
+        const url = new URL(window.location.href);
+        url.searchParams.set('quality', quality);
+        window.history.replaceState(null, '', url);
+    }
+
+    // Обработка ошибок загрузки видео
+    function handleVideoError(loadingElement) {
+        loadingElement.style.display = 'none';
+        alert('Не удалось загрузить видео. Пожалуйста, попробуйте другое качество.');
+        console.error('Ошибка загрузки видео');
+    }
+    /*]]>*/
+</script>
 </body>
 </html>

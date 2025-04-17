@@ -70,6 +70,14 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/VideoProcessingService" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/VideoProcessingService" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/VideoUploadService" />
         <option name="modules">
           <set>

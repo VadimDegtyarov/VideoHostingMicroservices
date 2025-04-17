@@ -1,4 +1,4 @@
-package ru.website.micro.videouploadservice.exception;
+package ru.website.micro.videoprocessingservice.exception;
 
 import org.springframework.http.HttpStatus;
 
@@ -24,10 +24,6 @@ public class VideoUploadException extends RuntimeException {
     public VideoUploadException(String videoProcessingFailed, HttpStatus httpStatus, Throwable e) {
         super(videoProcessingFailed, e);
         this.httpStatus = httpStatus;
-    }
-    public VideoUploadException(String videoProcessingFailed, Throwable e) {
-        super(videoProcessingFailed, e);
-        this.httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
     }
 
     public HttpStatus getHttpStatus() {

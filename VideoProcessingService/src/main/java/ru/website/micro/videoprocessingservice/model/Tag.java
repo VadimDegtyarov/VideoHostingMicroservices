@@ -1,6 +1,9 @@
-package ru.website.micro.videouploadservice.model;
+package ru.website.micro.videoprocessingservice.model;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +12,6 @@ import java.util.Set;
 @Table(name = "tags")
 @Builder
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @RequiredArgsConstructor
 public class Tag {
     @Id
@@ -17,13 +19,9 @@ public class Tag {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    @EqualsAndHashCode.Include
     private String name;
 
     @ManyToMany(mappedBy = "tags")
-    @ToString.Exclude
-    @Builder.Default
-    @EqualsAndHashCode.Exclude
     private Set<Video> videos = new HashSet<>();
 
 }
