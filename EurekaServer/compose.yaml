@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:17
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: MyVideoHosting
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - elk-net
+networks:
+  elk-net:
+    driver: bridge
+
+volumes:
+  pg_data:
+

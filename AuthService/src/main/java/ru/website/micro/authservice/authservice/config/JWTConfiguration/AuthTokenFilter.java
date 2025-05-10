@@ -8,12 +8,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.server.ServerWebExchange;
 import ru.website.micro.authservice.authservice.Exception.ResourceNotFoundException;
 import ru.website.micro.authservice.authservice.model.TokenUserAuthInfo;
 import ru.website.micro.authservice.authservice.model.UserAuthInfo;
@@ -37,6 +39,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             logger.info("jwt:{}", jwt);
             if (jwt != null && jwtUtil.validateJwtToken(jwt)) {
                 authenticateUser(jwt, request);
+
             }
         } catch (Exception e) {
             logger.error("Ошибка аутентификации пользователя:{}\n", e.getMessage(), e);

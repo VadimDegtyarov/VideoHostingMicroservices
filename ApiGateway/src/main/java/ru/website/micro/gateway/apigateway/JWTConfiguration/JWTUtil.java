@@ -46,6 +46,14 @@ public class JWTUtil {
         }
     }
 
+    public String getUserId(String authToken) {
+        Claims claims = validateJwtToken(authToken);
+        if (claims.get("id") != null) {
+            return (String) claims.get("id");
+        } else return null;
+
+    }
+
     public Collection<? extends GrantedAuthority> getUserRoles(String authToken) throws JwtException {
         Claims claims = validateJwtToken(authToken);
         logger.info("Roles:%s".formatted(claims.get("roles").toString()));

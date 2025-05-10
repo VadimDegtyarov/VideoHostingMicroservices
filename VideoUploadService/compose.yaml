@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:17
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: MyVideoHosting
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - elk-net
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    # запускаем обычный s3‑совместимый сервер, хранилище в volume
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - elk-net
+
+networks:
+  elk-net:
+    driver: bridge
+
+volumes:
+  pg_data:
+  minio_data:

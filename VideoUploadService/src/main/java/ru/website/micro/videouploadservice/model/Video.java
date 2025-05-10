@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import ru.website.micro.videouploadservice.model.user.User;
 import ru.website.micro.videouploadservice.model.Tag;
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,7 +15,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name="video")
+@Table(name = "video")
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
@@ -44,7 +45,6 @@ public class Video {
     )
     @Builder.Default
     @ToString.Exclude
-
     @EqualsAndHashCode.Exclude
     private List<VideoQuality> qualities = new ArrayList<>();
 
@@ -54,7 +54,7 @@ public class Video {
 
     @Column(name = "total_time_watching")
     private Integer totalTimeWatching = 0;
-    @Column(name="is_checked",nullable = false,columnDefinition = "boolean default false")
+    @Column(name = "is_checked", nullable = false, columnDefinition = "boolean default false")
     private Boolean isChecked;
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
@@ -70,6 +70,12 @@ public class Video {
     )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @Builder.Default // Добавлено!
+    @Builder.Default
     private Set<Tag> tags = new HashSet<>();
+    @Column(name = "description")
+    private String description;
+    @Column(name = "duration_video")
+    private Integer durationVideo;
+    @Column(name="num_of_views")
+    private Integer numOfViews;
 }

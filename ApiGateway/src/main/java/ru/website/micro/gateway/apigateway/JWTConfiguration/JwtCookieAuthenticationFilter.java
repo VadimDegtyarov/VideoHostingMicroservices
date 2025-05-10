@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -48,7 +49,16 @@ public class JwtCookieAuthenticationFilter implements WebFilter, Ordered {
                     context.setAuthentication(authentication);
                     SecurityContextHolder.setContext(context);
 
-                    return chain.filter(exchange)
+                    ServerHttpRequest mutatedRequest = exchange.getRequest()
+                            .mutate()
+                            .header("X-User-Id", jwtUtil.getUserId(jwt))
+                            .build();
+
+                    ServerWebExchange mutatedExchange = exchange.mutate()
+                            .request(mutatedRequest)
+                            .build();
+
+                    return chain.filter(mutatedExchange)
                             .contextWrite(ctx -> withAuthentication( authentication));
                 } else {
                     return onError(exchange, "Invalid JWT token", HttpStatus.UNAUTHORIZED);

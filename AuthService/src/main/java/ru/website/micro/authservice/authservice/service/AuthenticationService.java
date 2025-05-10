@@ -27,7 +27,7 @@ public class AuthenticationService {
     private final RolesRepository rolesRepository;
     private final UserRepository userRepository;
     @Transactional
-    public HttpStatus signUp(SignUpUserDTO sigUpUserDTO) {
+    public UserAuthInfo signUp(SignUpUserDTO sigUpUserDTO) {
         try {
             Optional<Role> userRole = rolesRepository.findByRole("ROLE_USER");
             User user = new User();
@@ -39,7 +39,6 @@ public class AuthenticationService {
                     .user(user)
                     .passwordHash(passwordEncoder.encode(sigUpUserDTO.getPassword()))
                     .build();
-
             return userAuthInfoService.create(myUser);
         } catch (Exception e) {
             log.error("Ошибка регистрации:{}", e.getMessage(),e);

@@ -89,6 +89,7 @@ public class VideoService {
                 .author(author)
                 .createdAt(LocalDate.now())
                 .tags(tags)
+                .description(videoDto.getDescription())
                 .build();
 
         video.getTags().addAll(tags);

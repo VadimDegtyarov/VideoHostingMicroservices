@@ -66,12 +66,12 @@ public class UserAuthInfoService implements UserDetailsService {
         return loadByLogin(login);
     }
 
-    private HttpStatus save(UserAuthInfo userAuthInfo) {
-        userAuthRepository.save(userAuthInfo);
-        return HttpStatus.OK;
+    private UserAuthInfo save(UserAuthInfo userAuthInfo) {
+
+        return userAuthRepository.save(userAuthInfo);
     }
 
-    public HttpStatus create(UserAuthInfo userAuthInfo) {
+    public UserAuthInfo create(UserAuthInfo userAuthInfo) {
         try {
             if (userAuthRepository.findByEmail(userAuthInfo.getEmail()).isPresent()) {
                 throw new ResourceNotFoundException("Данный пользователь уже существует");
@@ -83,7 +83,7 @@ public class UserAuthInfoService implements UserDetailsService {
             return save(userAuthInfo);
         } catch (Exception e) {
             logger.error("Ошибка создания пользователя:{}\n", e.getMessage(), e);
-            return HttpStatus.INTERNAL_SERVER_ERROR;
+            throw new RuntimeException("Ошибка создания пользователя:"+e.getMessage(),e);
         }
 
     }

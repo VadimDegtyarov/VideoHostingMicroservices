@@ -21,12 +21,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.CookieClearingLogoutHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import ru.website.micro.authservice.authservice.config.JWTConfiguration.*;
 import ru.website.micro.authservice.authservice.model.DeactivatedToken;
 import ru.website.micro.authservice.authservice.model.TokenUserAuthInfo;
 import ru.website.micro.authservice.authservice.model.UserAuthInfo;
 import ru.website.micro.authservice.authservice.repository.DeactivatedTokenRepository;
 import ru.website.micro.authservice.authservice.service.UserAuthInfoService;
+
+import java.util.List;
 
 
 @EnableWebSecurity
@@ -44,6 +49,17 @@ public class SecurityConfiguration  {
     public AuthTokenFilter authJwtTokenFilter(JWTUtil jwtUtil, @Lazy UserAuthInfoService userAuthInfoService) {
         return new AuthTokenFilter(userAuthInfoService, jwtUtil);
     }
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of("http://localhost:3000"));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(List.of("*"));
+        config.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -51,10 +67,9 @@ public class SecurityConfiguration  {
         http.csrf(AbstractHttpConfigurer::disable)
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/ex")
                         .permitAll()
                 )
-
+                .cors(Customizer.withDefaults())
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                         .sessionAuthenticationStrategy(tokenCookieAuthStrategy))

@@ -16,4 +16,5 @@ public class ImportVideoDto {
     private MultipartFile image;
     private MultipartFile videoFile;
     private String tags;
+    private String description;
 }

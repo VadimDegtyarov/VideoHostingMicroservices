@@ -54,6 +54,22 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/RecommendationService" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/RecommendationService" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/SearchService" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/SearchService" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/UserEngagementService" />
         <option name="modules">
           <set>

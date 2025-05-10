@@ -17,14 +17,14 @@ import java.util.UUID;
 import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @RestController
-@RequestMapping("/api/v1/users/{userId}/comments")
+@RequestMapping("/api/v1/comments")
 @RequiredArgsConstructor
 public class CommentController {
     private final CommentService commentService;
 
-    @PostMapping("/videos/{videoId}")
+    @PostMapping("/video/{videoId}")
     public ResponseEntity<Comment> addComment(
-            @PathVariable UUID userId,
+            @RequestParam UUID userId,
             @PathVariable Long videoId,
             @RequestBody String text
     ) {
@@ -34,14 +34,14 @@ public class CommentController {
 
     @PutMapping("/{commentId}")
     public ResponseEntity<Comment> updateComment(
-            @PathVariable UUID userId,
+            @RequestParam UUID userId,
             @PathVariable Long commentId,
             @RequestBody String text
     ) throws AccessDeniedException {
         return ResponseEntity.ok(commentService.updateComment(userId, commentId, text));
     }
 
-    @GetMapping
+    @GetMapping("/{userId}")
     public ResponseEntity<Page<Comment>> getUserComments(
             @PathVariable UUID userId,
             @RequestParam(required = false) Long lastCommentId,
@@ -50,7 +50,7 @@ public class CommentController {
         return ResponseEntity.ok(commentService.getUserComments(userId, lastCommentId, pageable));
     }
 
-    @GetMapping("/videos/{videoId}")
+    @GetMapping("/video/{videoId}")
     public ResponseEntity<Page<Comment>> getVideoComments(
             @PathVariable Long videoId,
             @PageableDefault(size = 20, sort = "createdAt", direction = DESC) Pageable pageable,
@@ -59,9 +59,9 @@ public class CommentController {
         return ResponseEntity.ok(commentService.getVideoComments(videoId, pageable, lastCommentId));
     }
 
-    @DeleteMapping("/{commentId}")
+    @DeleteMapping("/comments/{commentId}")
     public ResponseEntity<Void> deleteComment(
-            @PathVariable UUID userId,
+            @RequestParam UUID userId,
             @PathVariable Long commentId
     ) throws AccessDeniedException {
         commentService.deleteComment(userId, commentId);
